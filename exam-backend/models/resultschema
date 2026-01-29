@@ -1,0 +1,29 @@
+const ResultSchema = new mongoose.Schema({
+    student: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User', 
+        required: true 
+    },
+    exam: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User', 
+        required: true 
+    },
+    answers: [String],
+    // Demonstrates data integrity and authenticity using hash-based digital signatures 
+    digitalSignature: { 
+        type: String, 
+        required: true 
+    },
+    timestamp: { 
+        type: Date, 
+        default: Date.now 
+    }
+});
+
+// Exporting the models
+const User = mongoose.model('User', UserSchema);
+const Exam = mongoose.model('Exam', ExamSchema);
+const Result = mongoose.model('Result', ResultSchema);
+
+module.exports = { User, Exam, Result };
