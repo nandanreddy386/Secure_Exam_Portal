@@ -3,9 +3,11 @@ import axios from 'axios';
 
 const Register = () => {
     const [formData, setFormData] = useState({ username: '', password: '', role: 'Student' });
+    const [errorMsg, setErrorMsg] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMsg(''); // Clear previous errors
         try {
             // Sends data to your Node.js backend
             const res = await axios.post('http://localhost:5000/api/register', formData);
@@ -13,10 +15,10 @@ const Register = () => {
         } catch (err) {
             // This check prevents the 'undefined' error you are seeing
             const errorMessage = err.response && err.response.data 
-                ? err.response.data.error 
+                ? err.response.data.message || err.response.data.error
                 : "Server is not responding. Make sure backend is running!";
+            setErrorMsg(errorMessage);
             alert("Registration failed: " + errorMessage);
-
         }
     };
 

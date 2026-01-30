@@ -18,6 +18,15 @@ const registerUser = async (req, res) => {
     try {
         const { username, password, role } = req.body;
 
+        // Allow Admin registration only if no Admin currently exists.
+        // This prevents multiple Admin accounts while still allowing the first Admin.
+        if (role && role.toLowerCase() === 'admin') {
+            const existingAdmin = await User.findOne({ role: { $regex: '^admin$', $options: 'i' } });
+            if (existingAdmin) {
+                return res.status(403).json({ message: "An Admin already exists. New Admin registration is not allowed." });
+            }
+        }
+
         // 1. Generate unique salt 
         const salt = await bcrypt.genSalt(10);
 
@@ -28,7 +37,7 @@ const registerUser = async (req, res) => {
             username,
             passwordHash: hashedPassword,
             salt: salt, // Storing for demo purposes to show the examiner
-            role // Subject for Access Control 
+            role: role || 'Student' // default to 'Student' when not provided
         });
 
         await newUser.save();
