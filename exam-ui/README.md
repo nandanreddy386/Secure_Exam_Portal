@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Secure Exam Portal — Frontend (exam-ui)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React frontend for the Secure Exam Portal project. This repository contains the UI for students, teachers and admins to manage and take exams. The full project includes a separate backend found in the `exam-backend` folder.
+
+**Quick summary**: React (Create React App) frontend that communicates with a Node/Express + MongoDB backend to provide role-based exam creation, exam sessions, OTP verification and results.
+
+**Key features**
+- Role-based interfaces: Student, Teacher, Admin
+- Exam creation and management (Teacher)
+- Secure exam sessions for students
+- OTP-based verification for authentication
+- Results viewing and export
+
+**Relevant folders**
+- `public/` — static assets and manifest
+- `src/` — React source code (components, styles)
+
+## Prerequisites
+- Node.js (v14+ recommended)
+- npm (bundled with Node.js)
+- MongoDB (local or hosted)
+
+## Backend (exam-backend)
+The backend lives in the sibling folder `exam-backend`. It uses Express and MongoDB (Mongoose).
+
+Basic steps to install and run the backend (from project root or inside `exam-backend`):
+
+PowerShell / Command Prompt:
+```powershell
+cd exam-backend
+npm install
+# start backend (this project provides server.js)
+node server.js
+```
+
+Notes: The backend expects environment variables (create a `.env` file in `exam-backend`):
+- `MONGO_URI` — MongoDB connection string
+- `JWT_SECRET` — JSON Web Token secret
+- `PORT` — backend port (e.g. 5000)
+- Optional email settings for OTP (SMTP credentials)
+
+## Frontend (exam-ui)
+Install and run the React app:
+
+PowerShell / Command Prompt:
+```powershell
+cd exam-ui
+npm install
+npm start
+```
+
+This will open the app at http://localhost:3000 by default. The frontend expects the backend API to be accessible (update API base URLs in `src` if needed).
 
 ## Available Scripts
+See `exam-ui/package.json` for exact scripts. Common commands:
+- `npm start` — run dev server
+- `npm run build` — build production bundle
+- `npm test` — run tests
 
-In the project directory, you can run:
+## Environment & Configuration
+- Update API endpoints in `src` where `axios` is configured (search for the base URL). Adjust to match your backend host/port.
+- Ensure `MONGO_URI` and `JWT_SECRET` are set for backend before running.
 
-### `npm start`
+## Project structure (high-level)
+- `exam-backend/` — Node/Express backend and scripts
+- `exam-ui/` — React frontend (this folder)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Contributing
+If you want to improve the project:
+1. Fork the repo
+2. Implement changes on a branch
+3. Open a pull request with a clear description
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Troubleshooting
+- If the frontend cannot reach the backend, confirm the backend is running and CORS is enabled.
+- For database errors, verify `MONGO_URI` and that MongoDB is reachable.
 
-### `npm test`
+## Next steps you might want
+- Add a `start` script to `exam-backend/package.json` (e.g., `"start": "node server.js"`).
+- Add a `.env.example` file showing required environment variables.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+If you'd like, I can:
+- Add `exam-backend` `start` script to `package.json`.
+- Create a `.env.example` in `exam-backend`.
+Tell me which one to do next.
