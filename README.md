@@ -1,6 +1,4 @@
-Here is the complete, single-file content for your README.md. I have structured it to highlight every security component required by your 23CSE313 Lab Evaluation.
 
-Copy and paste everything below into a file named README.md in your project's root directory:
 
 🛡️ SecurePortal: NIST-Compliant Exam Management System
 SecurePortal is a full-stack, security-first web application designed for academic examinations. This project implements the core pillars of Information Security—Confidentiality, Integrity, and Availability (CIA)—through a robust architecture following NIST guidelines.
